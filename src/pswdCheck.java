@@ -10,17 +10,23 @@ public class pswdCheck {
         String user;
         String password;
         Scanner read = new Scanner(System.in);
-        File file = new File("users.txt");
+        File file = new File("userslist.txt");
         Scanner scanner = new Scanner(file);
         String line =scanner.nextLine();
-        System.out.println(line);
+        //System.out.println(line);
         String[] parsed=line.split(",");
+        boolean isCorrect=false;
+        Runtime run = Runtime.getRuntime();
         do{
-            System.out.println("user: ");
+            System.out.print("user: ");
             user = read.nextLine();
-            System.out.printf("pass: ");
+            System.out.print("pass: ");
             password = read.nextLine();
-        } while (!parsed[0].equals(user) & !parsed[1].equals(password));
+            if (parsed[0].equals(user) && parsed[1].equals(password)) {
+                isCorrect=true;
+                run.exec("notepad");
+            }
+        } while (!isCorrect);
         System.out.println("success.");
     }
 }
